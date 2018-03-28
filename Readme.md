@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Костя Пугачев](https://up.htmlacademy.ru/ecmascript/4/user/609267).
-* Наставник: `Неизвестно`.
+* Наставник: `Вадим Шевяков`.
 
 ---
 
