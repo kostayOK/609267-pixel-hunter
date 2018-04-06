@@ -57,7 +57,8 @@ const template = ` <header class="header">
 const templateNode = getElementFromHtml(template);
 const form = templateNode.querySelector(`.game__content.game__content--triple`);
 form.addEventListener(`click`, (e) => {
-  if (e.target.classList.contains(`game__option`)) {
+  e.preventDefault();
+  if (e.target.classList.contains(`game__option`) || e.target.tagName === `IMG`) {
     printScreen(statsScreen);
   }
 });

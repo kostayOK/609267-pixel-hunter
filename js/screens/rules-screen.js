@@ -38,17 +38,21 @@ const template = `  <header class="header">
 const templateNode = getElementFromHtml(template);
 let rulesInputName = templateNode.querySelector(`.rules__input`);
 let rulesButtonSubmit = templateNode.querySelector(`.rules__button`);
+const ok = (e) => {
+  e.preventDefault();
+  printScreen(gameFirst);
+  rulesInputName.removeEventListener(`click`, ok);
+};
 
-rulesInputName.addEventListener(`blur`, function () {
+const rulesHandler = () => {
   if (rulesInputName.value !== ``) {
     rulesButtonSubmit.disabled = false;
-    rulesButtonSubmit.addEventListener(`click`, (e) => {
-      e.preventDefault();
-      printScreen(gameFirst);
-    });
+    rulesButtonSubmit.addEventListener(`click`, ok);
   } else {
     rulesButtonSubmit.disabled = true;
   }
-});
+};
+// rulesInputName.addEventListener(`change`, rulesHandler);
+rulesInputName.addEventListener(`keydown`, rulesHandler);
 
 export default templateNode;
