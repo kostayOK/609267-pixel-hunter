@@ -52,7 +52,6 @@ const rulesHandler = () => {
     rulesButtonSubmit.disabled = true;
   }
 };
-// rulesInputName.addEventListener(`change`, rulesHandler);
 rulesInputName.addEventListener(`keydown`, rulesHandler);
 
 export default templateNode;

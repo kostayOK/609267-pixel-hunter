@@ -1,4 +1,5 @@
 import {getElementFromHtml, printScreen} from '../utils';
+import intro from '../screens/intro-screen';
 import gameScreen from './rules-screen';
 const template = `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -25,9 +26,13 @@ const template = `<div class="greeting central--blur">
   </footer>`;
 
 const templateNode = getElementFromHtml(template);
-//
+const greetingLogo = templateNode.querySelector(`.greeting__logo`);
+
 templateNode.querySelector(`.greeting__continue span img`).addEventListener(`click`, function () {
   printScreen(gameScreen);
 });
-//
+greetingLogo.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  printScreen(intro);
+});
 export default templateNode;
