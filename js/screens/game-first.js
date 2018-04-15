@@ -1,5 +1,6 @@
 import {getElementFromHtml, printScreen} from '../utils';
 import gameSecond from './game-second';
+import intro from '../screens/intro-screen';
 const template = `<header class="header">
     <div class="header__back">
       <button class="back">
@@ -54,7 +55,7 @@ const template = `<header class="header">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>
+  </div> 
   <footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
     <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
@@ -65,16 +66,24 @@ const template = `<header class="header">
       <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
     </div>
   </footer>`;
-
 const templateNode = getElementFromHtml(template);
-const form = templateNode.querySelector(`.game__content`);
-const inpunqQuestion1 = templateNode.querySelectorAll(`input[name=question1]`);
-const inpunqQuestion2 = templateNode.querySelectorAll(`input[name=question2]`);
+const createElement = () => {
+  const fragment = templateNode.cloneNode(true);
+  const form = fragment.querySelector(`.game__content`);
+  const inpunqQuestion1 = fragment.querySelectorAll(`input[name=question1]`);
+  const inpunqQuestion2 = fragment.querySelectorAll(`input[name=question2]`);
+  const buttonBack = fragment.querySelector(`.back`);
 
-form.addEventListener(`click`, () => {
-  if ((inpunqQuestion1[0].checked || inpunqQuestion1[1].checked) && (inpunqQuestion2[0].checked || inpunqQuestion2[1].checked)) {
-    // console.log('ok checked');
-    printScreen(gameSecond);
-  }
-});
-export default templateNode;
+  form.addEventListener(`click`, () => {
+    if ((inpunqQuestion1[0].checked || inpunqQuestion1[1].checked) && (inpunqQuestion2[0].checked || inpunqQuestion2[1].checked)) {
+      // console.log('ok checked');
+      printScreen(gameSecond);
+    }
+  });
+  buttonBack.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    printScreen(intro);
+  });
+  return fragment;
+};
+export default createElement;

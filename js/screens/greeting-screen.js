@@ -24,15 +24,18 @@ const template = `<div class="greeting central--blur">
       <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
     </div>
   </footer>`;
-
 const templateNode = getElementFromHtml(template);
-const greetingLogo = templateNode.querySelector(`.greeting__logo`);
+const createElement = () => {
+  const fragment = templateNode.cloneNode(true);
+  const greetingLogo = fragment.querySelector(`.greeting__logo`);
+  fragment.querySelector(`.greeting__continue span img`).addEventListener(`click`, function () {
+    printScreen(gameScreen);
+  });
+  greetingLogo.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    printScreen(intro);
+  });
+  return fragment;
+};
 
-templateNode.querySelector(`.greeting__continue span img`).addEventListener(`click`, function () {
-  printScreen(gameScreen);
-});
-greetingLogo.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  printScreen(intro);
-});
-export default templateNode;
+export default createElement;

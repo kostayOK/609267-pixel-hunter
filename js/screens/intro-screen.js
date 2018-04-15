@@ -1,7 +1,6 @@
 import {getElementFromHtml, printScreen} from '../utils.js';
 import greetingScreen from './greeting-screen';
-
-const template = `  <div id="main" class="central__content">
+const template = `<div id="main" class="central__content">
     <div id="intro" class="intro">
       <h1 class="intro__asterisk">*</h1>
       <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
@@ -17,11 +16,13 @@ const template = `  <div id="main" class="central__content">
       <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
     </div>
   </footer>`;
-
 const templateNode = getElementFromHtml(template);
-const per = templateNode.querySelector(`h1.intro__asterisk`);
-per.addEventListener(`click`, () => {
-  printScreen(greetingScreen);
-});
-
-export default templateNode;
+const createElement = () => {
+  const fragment = templateNode.cloneNode(true);
+  const per = fragment.querySelector(`h1.intro__asterisk`);
+  per.addEventListener(`click`, () => {
+    printScreen(greetingScreen);
+  });
+  return fragment;
+};
+export default createElement;

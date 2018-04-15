@@ -1,6 +1,6 @@
 import {getElementFromHtml, printScreen} from '../utils';
 import statsScreen from './stats-screen';
-
+import intro from "./intro-screen";
 const template = ` <header class="header">
     <div class="header__back">
       <button class="back">
@@ -53,13 +53,21 @@ const template = ` <header class="header">
       <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
     </div>
   </footer>`;
-
 const templateNode = getElementFromHtml(template);
-const form = templateNode.querySelector(`.game__content.game__content--triple`);
-form.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  if (e.target.classList.contains(`game__option`) || e.target.tagName === `IMG`) {
-    printScreen(statsScreen);
-  }
-});
-export default templateNode;
+const createElement = () => {
+  const fragment = templateNode.cloneNode(true);
+  const form = fragment.querySelector(`.game__content.game__content--triple`);
+  const buttonBack = fragment.querySelector(`.back`);
+  form.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    if (e.target.classList.contains(`game__option`) || e.target.tagName === `IMG`) {
+      printScreen(statsScreen);
+    }
+  });
+  buttonBack.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    printScreen(intro);
+  });
+  return fragment;
+};
+export default createElement;

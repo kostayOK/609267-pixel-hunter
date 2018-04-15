@@ -1,6 +1,6 @@
 import {getElementFromHtml, printScreen} from '../utils.js';
 import gameFirst from './game-first';
-
+import intro from '../screens/intro-screen';
 const template = `  <header class="header">
     <div class="header__back">
       <button class="back">
@@ -36,22 +36,53 @@ const template = `  <header class="header">
     </div>
   </footer>`;
 const templateNode = getElementFromHtml(template);
-let rulesInputName = templateNode.querySelector(`.rules__input`);
-let rulesButtonSubmit = templateNode.querySelector(`.rules__button`);
-const ok = (e) => {
-  e.preventDefault();
-  printScreen(gameFirst);
-  rulesInputName.removeEventListener(`click`, ok);
-};
+// let rulesInputName = templateNode.querySelector(`.rules__input`);
+// let rulesButtonSubmit = templateNode.querySelector(`.rules__button`);
 
-const rulesHandler = () => {
-  if (rulesInputName.value !== ``) {
-    rulesButtonSubmit.disabled = false;
-    rulesButtonSubmit.addEventListener(`click`, ok);
-  } else {
-    rulesButtonSubmit.disabled = true;
-  }
+// const rulesHandler = () => {
+//   console.log('ok внутри')
+//   if (rulesInputName.value !== ``) {
+//     rulesButtonSubmit.disabled = false;
+//     rulesButtonSubmit.addEventListener(`click`, ok);
+//   } else {
+//     rulesButtonSubmit.disabled = true;
+//   }
+// };
+const createElement = () => {
+  const ok = (e) => {
+    e.preventDefault();
+    printScreen(gameFirst);
+    rulesInputName.removeEventListener(`click`, ok);
+  };
+  const fragment = templateNode.cloneNode(true);
+  const rulesInputName = fragment.querySelector(`.rules__input`);
+  const rulesButtonSubmit = fragment.querySelector(`.rules__button`);
+  const buttonBack = fragment.querySelector(`.back`);
+  const rulesHandler = () => {
+    if (rulesInputName.value !== ``) {
+      rulesButtonSubmit.disabled = false;
+      rulesButtonSubmit.addEventListener(`click`, ok);
+    } else {
+      rulesButtonSubmit.disabled = true;
+    }
+  };
+  buttonBack.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    printScreen(intro);
+  });
+  rulesInputName.addEventListener(`keydown`, rulesHandler);
+  return fragment;
 };
-rulesInputName.addEventListener(`keydown`, rulesHandler);
+export default createElement;
 
-export default templateNode;
+// const rulesHandler = () => {
+//   if (rulesInputName.value !== ``) {
+//     rulesButtonSubmit.disabled = false;
+//     rulesButtonSubmit.addEventListener(`click`, ok);
+//   } else {
+//     rulesButtonSubmit.disabled = true;
+//   }
+// };
+// rulesInputName.addEventListener(`keydown`, rulesHandler);
+//
+// export default templateNode;

@@ -3,8 +3,8 @@ export const getElementFromHtml = (html) => {
   template.innerHTML = html;
   return template.content.cloneNode(true);
 };
-export const printScreen = (screen) => {
+export const printScreen = (createScreen) => {
   const mainView = document.querySelector(`.central`);
   mainView.innerHTML = ``;
-  mainView.appendChild(screen);
+  mainView.appendChild(createScreen());
 };

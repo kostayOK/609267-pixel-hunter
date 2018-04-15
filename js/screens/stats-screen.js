@@ -1,4 +1,5 @@
-import {getElementFromHtml} from '../utils';
+import {getElementFromHtml, printScreen} from '../utils';
+import intro from "./intro-screen";
 const template = ` <header class="header">
     <div class="header__back">
       <button class="back">
@@ -118,4 +119,13 @@ const template = ` <header class="header">
     </div>
   </footer>`;
 const templateNode = getElementFromHtml(template);
-export default templateNode;
+const createElement = () => {
+  const fragment = templateNode.cloneNode(true);
+  const buttonBack = fragment.querySelector(`.back`);
+  buttonBack.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    printScreen(intro);
+  });
+  return fragment;
+};
+export default createElement;
