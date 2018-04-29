@@ -2,18 +2,10 @@
  * userResponses - ответов пользователя
  * remainingLives - оставшихся жизней
  * scorePoints - набранных очков*/
-// console.log(`ok`);
-// const userArrResponse = [1, 2, 3];
-//
-// const remainingLives = (arr) => {
-//   return arr;
-// };
-//
-// const scorePoints = (arr) => {
-//   return arr;
-// };
 
 export const userResponses = (arr) => {
-  return arr;
+  if (Array.isArray(arr)) {
+    return arr;
+  }
+  throw new Error(`not Array not ok`);
 };
-
