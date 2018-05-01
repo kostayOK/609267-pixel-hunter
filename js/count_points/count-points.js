@@ -9,7 +9,8 @@ const COUNT_RULES = {
   quickAnswer: 50,
   slowResponse: 50,
   remainingLife: 50,
-  fastTime: 30,
+  fastTime: 10,
+  slowResponseTime: 20
   // slowResponseTime: 50
 };
 
@@ -23,9 +24,9 @@ export const countPoints = (answers = [], life = 3) => {
     let currentAnswer = answers[i];
     if (currentAnswer.correctAnswer) {
       points += COUNT_RULES.correctAnswer;
-      if (currentAnswer.time < COUNT_RULES.fastTime) {
+      if (currentAnswer.time <= COUNT_RULES.fastTime) {
         points += COUNT_RULES.quickAnswer;
-      } else if (currentAnswer.time > COUNT_RULES.fastTime) {
+      } else if (currentAnswer.time > COUNT_RULES.slowResponseTime) {
         points -= COUNT_RULES.slowResponse;
       }
     } else {

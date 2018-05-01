@@ -158,35 +158,35 @@ describe(`Count game points`, () => {
   const randomAnswers = [
     {
       correctAnswer: true, // 150
-      time: 25
+      time: 10
     },
     {
       correctAnswer: true, // 50
-      time: 35
+      time: 22
     }, {
       correctAnswer: true, // 50
-      time: 55
+      time: 23
     }, {
       correctAnswer: true, // 50
-      time: 35
-    }, {
-      correctAnswer: false, // -50
-      time: 25
-    }, {
-      correctAnswer: true, // 150
       time: 25
     }, {
       correctAnswer: false, // -50
       time: 25
     }, {
-      correctAnswer: true, // 50
-      time: 35
-    }, {
       correctAnswer: true, // 150
+      time: 8
+    }, {
+      correctAnswer: false, // -50
       time: 25
     }, {
       correctAnswer: true, // 50
-      time: 35
+      time: 24
+    }, {
+      correctAnswer: true, // 150
+      time: 7
+    }, {
+      correctAnswer: true, // 50
+      time: 25
     }
   ];
   it(`should return 600. and life 1 + 50.`, () => {
