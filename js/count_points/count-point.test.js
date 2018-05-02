@@ -189,9 +189,9 @@ describe(`Count game points`, () => {
       time: 25
     }
   ];
-  it(`should return 600. and life 1 + 50.`, () => {
+  it(`should return 700. and life 1 + 50.`, () => {
     let points = countPoints(randomAnswers, 1);
-    assert.equal(points, 650);
+    assert.equal(points, 750);
   });
 
 });

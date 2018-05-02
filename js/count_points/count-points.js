@@ -29,8 +29,6 @@ export const countPoints = (answers = [], life = 3) => {
       } else if (currentAnswer.time > COUNT_RULES.slowResponseTime) {
         points -= COUNT_RULES.slowResponse;
       }
-    } else {
-      points -= COUNT_RULES.slowResponse;
     }
   }
 
