@@ -13,7 +13,7 @@ const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const rollup = require('gulp-better-rollup');
 const sourcemaps = require('gulp-sourcemaps');
-const mocha = require('gulp-mocha'); // Добавим установленный gulp-mocha плагин
+
 
 
 gulp.task('style', function () {
@@ -54,12 +54,14 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('build/js'));
 });
 
+const mocha = require('gulp-mocha'); // Добавим установленный gulp-mocha плагин
 gulp.task('test', function () {
   return gulp
     .src(['js/**/*.test.js'], {read: false})
     .pipe(mocha({
       compilers: ['js:babel-register'], // Включим поддержку "import/export" в Mocha тестах
       reporter: 'spec'       // Вид в котором я хочу отображать результаты тестирования
+      // reporter: 'nyan'       // Вид в котором я хочу отображать результаты тестирования
     }));
 });
 
